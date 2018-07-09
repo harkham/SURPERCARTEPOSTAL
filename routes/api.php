@@ -18,5 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('register', 'Auth\RegisterController@register');
+
+// CARTE POSTAL
+Route::post('postcard', 'PostCardController@store');
+Route::get('postcard', 'PostCardController@index');
+
+//AUTHENTIFICATION
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout');

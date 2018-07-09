@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class PostCads extends Migration
+class CreateMediasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,14 +14,13 @@ class PostCads extends Migration
     public function up()
     {
         Schema::enableForeignKeyConstraints();
-        Schema::create('PostCards', function (Blueprint $table) {
+        Schema::create('medias', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->double('latitude');
-            $table->double('longitude');
-            $table->string('title');
-            $table->string('message');                       
+            $table->integer('postcard_id')->unsigned();
+            $table->foreign('postcard_id','postcard_id_medias_foreign')->references('id')->on('postcards')->onDelete('cascade');
+            $table->string('url');
+            $table->string('description');
+            $table->integer('type');
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ class PostCads extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('PostCards');
+        Schema::dropIfExists('medias');
     }
 }
