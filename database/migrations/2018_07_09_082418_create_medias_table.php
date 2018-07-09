@@ -17,7 +17,7 @@ class CreateMediasTable extends Migration
         Schema::create('medias', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('postcard_id')->unsigned();
-            $table->foreign('postcard_id','postcard_id_medias_foreign')->references('id')->on('postcards')->onDelete('cascade');
+            $table->foreign('postcard_id')->references('id')->on('postcards')->onDelete('cascade');
             $table->string('url');
             $table->string('description');
             $table->integer('type');
