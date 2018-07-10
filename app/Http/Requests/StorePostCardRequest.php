@@ -13,7 +13,7 @@ class StorePostCardRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,9 +29,9 @@ class StorePostCardRequest extends FormRequest
             'latitude' => 'numeric|require',
             'longitude' => 'numeric|require',
             'medias' => 'array',
-            'data' => 'in_array:medias|string',
-            'description' => 'in_array:medias|string',
-            'type' => 'in_array:medias|numeric'
+            'data' => 'in_array:medias|string|require',
+            'description' => 'in_array:medias|string|require',
+            'type' => 'in_array:medias|numeric|between:1,4|require'
         ];
     }
 }
