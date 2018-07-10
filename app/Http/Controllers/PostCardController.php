@@ -56,9 +56,9 @@ class PostCardController extends Controller
                 {
                     $media = new Media();
                     $media->postcard_id = $card->id;
-                    $media->description = $image['description'];
+                    $media->description = $m['description'];
                     $media->type = 1;
-                    $file = base64_decode($image['data']);
+                    $file = base64_decode($m['data']);
                     $uuid = Uuid::generate(4);
                     $fileName = $uuid . '.jpg';
                     $media->url = $fileName;
@@ -69,8 +69,8 @@ class PostCardController extends Controller
                 {
                     $media = new Media();
                     $media->postcard_id = $card->id;
-                    $media->url = $video['data'];
-                    $media->description = $video['description'];
+                    $media->url = $m['data'];
+                    $media->description = $m['description'];
                     $media->type = 2;
                     $media->save();
                 }
@@ -78,8 +78,8 @@ class PostCardController extends Controller
                 {
                     $media = new Media();
                     $media->postcard_id = $card->id;
-                    $media->url = $music['data'];
-                    $media->description = $music['description'];
+                    $media->url = $m['data'];
+                    $media->description = $m['description'];
                     $media->type = 3;
                     $media->save();
                 }
@@ -87,8 +87,8 @@ class PostCardController extends Controller
                 {
                     $media = new Media();
                     $media->postcard_id = $card->id;
-                    $media->url = $sketch['data'];
-                    $media->description = $sketch['description'];
+                    $media->url = $m['data'];
+                    $media->description = $m['description'];
                     $media->type = 4;
                     $media->save();
                 }
