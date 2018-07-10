@@ -24,14 +24,14 @@ class StorePostCardRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'string|require',
-            'message' => 'string|require',
-            'latitude' => 'numeric|require',
-            'longitude' => 'numeric|require',
+            'title' => 'string|required',
+            'message' => 'string|required',
+            'latitude' => 'numeric|required',
+            'longitude' => 'numeric|required',
             'medias' => 'array',
-            'data' => 'in_array:medias|string|require',
-            'description' => 'in_array:medias|string|require',
-            'type' => 'in_array:medias|numeric|between:1,4|require'
+            'data' => 'in_array:medias|string|required',
+            'description' => 'in_array:medias|string|required',
+            'type' => 'in_array:medias|numeric|between:1,4|required'
         ];
     }
 }
