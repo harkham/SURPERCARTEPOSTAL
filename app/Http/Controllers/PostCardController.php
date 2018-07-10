@@ -9,6 +9,7 @@ use DB;
 use App\Media;
 use Storage;
 use Uuid;
+use App\Http\Requests\StorePostCardRequest;
 
 class PostCardController extends Controller
 {
@@ -32,7 +33,7 @@ class PostCardController extends Controller
         return response()->json($postcards, 200, [],JSON_NUMERIC_CHECK);
     }
 
-    public function store()
+    public function store(StorePostCardRequest $request)
     {
         $datas = request()->all();
         $user = UserService::findUserByToken(request());
@@ -46,9 +47,9 @@ class PostCardController extends Controller
 
      //   DB::beginTransaction();
         $card->save();
-            $medias = $datas['medias'];
-            if($medias)
-            {
+        $medias = $datas['medias'];
+        if($medias)
+        {
             foreach($medias as $m)
             {
                 if($m['type'] == 1)
