@@ -33,7 +33,7 @@ class PostCardController extends Controller
         return response()->json($postcards, 200, [],JSON_NUMERIC_CHECK);
     }
 
-    public function store()
+    public function store(StorePostCardRequest $request)
     {
         $datas = request()->all();
         $user = UserService::findUserByToken(request());
