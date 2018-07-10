@@ -52,7 +52,7 @@ class PostCardController extends Controller
         {
             foreach($medias as $m)
             {
-                if($m['type'] == null | $m['description'] == null || $m['data'] == null)
+                if(empty($m['type'])| empty($m['type']) ||empty($m['type']))
                 {
                     return response()->json(
                         [
