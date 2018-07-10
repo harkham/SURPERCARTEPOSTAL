@@ -46,53 +46,54 @@ class PostCardController extends Controller
 
      //   DB::beginTransaction();
         $card->save();
-
-        $videos = $datas['videos'];
-        foreach($videos as $video)
-        {
-            $media = new Media();
-            $media->postcard_id = $card->id;
-            $media->url = $video['data'];
-            $media->description = $video['description'];
-            $media->type = 2;
-            $media->save();
+            $medias = $datas['medias'];
+            if($medias)
+            {
+            foreach($medias as $m)
+            {
+                if($m['type'] == 1)
+                {
+                    $media = new Media();
+                    $media->postcard_id = $card->id;
+                    $media->description = $image['description'];
+                    $media->type = 1;
+                    $file = base64_decode($image['data']);
+                    $uuid = Uuid::generate(4);
+                    $fileName = $uuid . '.jpg';
+                    $media->url = $fileName;
+                    $media->save();
+                    Storage::disk('public')->put('images/' . $fileName, $file);
+                }
+                elseif($m['type' == 2])
+                {
+                    $media = new Media();
+                    $media->postcard_id = $card->id;
+                    $media->url = $video['data'];
+                    $media->description = $video['description'];
+                    $media->type = 2;
+                    $media->save();
+                }
+                elseif($m['type'] == 3)
+                {
+                    $media = new Media();
+                    $media->postcard_id = $card->id;
+                    $media->url = $music['data'];
+                    $media->description = $music['description'];
+                    $media->type = 3;
+                    $media->save();
+                }
+                elseif($m['type'] == 4)
+                {
+                    $media = new Media();
+                    $media->postcard_id = $card->id;
+                    $media->url = $sketch['data'];
+                    $media->description = $sketch['description'];
+                    $media->type = 4;
+                    $media->save();
+                }
+            }
         }
-        $musics = $datas['musics'];
-        foreach($musics as $music)
-        {
-            $media = new Media();
-            $media->postcard_id = $card->id;
-            $media->url = $music['data'];
-            $media->description = $music['description'];
-            $media->type = 3;
-            $media->save();
-        }
-
-        $sketchs = $datas['sketchs'];
-        foreach($sketchs as $sketch)
-        {
-            $media = new Media();
-            $media->postcard_id = $card->id;
-            $media->url = $sketch['data'];
-            $media->description = $sketch['description'];
-            $media->type = 4;
-            $media->save();
-        }
-
-        $images = $datas['images'];
-        foreach($images as $image)
-        {
-            $media = new Media();
-            $media->postcard_id = $card->id;
-            $media->description = $image['description'];
-            $media->type = 1;
-            $file = base64_decode($image['data']);
-            $uuid = Uuid::generate(4);
-            $fileName = $uuid . '.jpg';
-            $media->url = $fileName;
-            $media->save();
-            Storage::disk('public')->put('images/' . $fileName, $file);
-        }
+       
         DB::commit();
 
         $card->medias;
