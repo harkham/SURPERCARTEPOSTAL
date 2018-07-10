@@ -52,6 +52,14 @@ class PostCardController extends Controller
         {
             foreach($medias as $m)
             {
+                if($m['type'] == null | $m['description'] == null || $m['data'] == null)
+                {
+                    return response()->json(
+                        [
+                        'error' => 'l element medias doit comporter les elements type, description, data',
+                        'message' => 'lit la doc connard'
+                    ], 422, [],JSON_NUMERIC_CHECK);
+                }
                 if($m['type'] == 1)
                 {
                     $media = new Media();
