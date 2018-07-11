@@ -28,6 +28,7 @@ class StorePostCardRequest extends FormRequest
             'message' => 'string|required',
             'latitude' => 'numeric|required',
             'longitude' => 'numeric|required',
+            'medias' => 'array|required',
         ];
     }
 }
