@@ -33,7 +33,7 @@ class PostCardController extends Controller
         return response()->json($postcards, 200, [],JSON_NUMERIC_CHECK);
     }
 
-    public function store(Request $request)
+    public function store(StorePostCardRequest $request)
     {
         $datas = request()->all();
         dd($datas);
@@ -46,9 +46,9 @@ class PostCardController extends Controller
         $card->title = $datas['title'];
         $card->user_id = $user->id;
 
-     //   DB::beginTransaction();
+       DB::beginTransaction();
         $card->save();
-        /*
+        
         $medias = $datas['medias'];
         if($medias)
         {
@@ -108,7 +108,6 @@ class PostCardController extends Controller
         DB::commit();
 
         $card->medias;
-        */
         return response()->json(
             [
             'message' => 'La carte postale à bien été ajouté',
