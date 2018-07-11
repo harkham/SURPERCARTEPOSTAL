@@ -47,6 +47,7 @@ class PostCardController extends Controller
 
      //   DB::beginTransaction();
         $card->save();
+        /*
         $medias = $datas['medias'];
         if($medias)
         {
@@ -106,6 +107,7 @@ class PostCardController extends Controller
         DB::commit();
 
         $card->medias;
+        */
         return response()->json(
             [
             'message' => 'La carte postale à bien été ajouté',
