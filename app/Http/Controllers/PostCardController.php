@@ -36,7 +36,7 @@ class PostCardController extends Controller
     public function store(Request $request)
     {
         $datas = request()->all();
-        dd($datas);
+        return response()->json($datas);
         $user = UserService::findUserByToken(request());
 
         $card = new PostCard();
