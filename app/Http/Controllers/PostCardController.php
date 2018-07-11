@@ -33,7 +33,7 @@ class PostCardController extends Controller
         return response()->json($postcards, 200, [],JSON_NUMERIC_CHECK);
     }
 
-    public function store(StorePostCardRequest $request)
+    public function store(Request $request)
     {
         $datas = request()->all();
         dd($datas);
