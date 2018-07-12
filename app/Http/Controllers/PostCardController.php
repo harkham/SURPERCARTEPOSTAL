@@ -38,7 +38,12 @@ class PostCardController extends Controller
         $datas = request()->all();
  //       return response()->json($datas);
         $user = UserService::findUserByToken(request());
-
+        if($user == null)
+        {
+            return response()->json([
+                "error" => "token not valid",
+            ], 403);
+        }
         $card = new PostCard();
         $card->latitude = $datas['latitude'];
         $card->longitude = $datas['longitude'];
