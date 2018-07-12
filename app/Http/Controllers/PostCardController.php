@@ -41,7 +41,7 @@ class PostCardController extends Controller
 
         $card = new PostCard();
         $card->latitude = $datas['latitude'];
-        $card->longitude = $datas['latitude'];
+        $card->longitude = $datas['longitude'];
         $card->message = $datas['message'];
         $card->title = $datas['title'];
         $card->user_id = $user->id;
